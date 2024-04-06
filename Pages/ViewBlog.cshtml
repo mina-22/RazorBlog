@@ -1,0 +1,92 @@
+﻿@page
+@model RazorPlog.Pages.ViewBlogModel
+@{
+
+}
+@{
+    Layout = "_DashBoard";
+}
+    <div class="top">
+        <i class="uil uil-bars sidebar-toggle"></i>
+
+        <div class="search-box">
+            <i class="uil uil-search"></i>
+            <input type="text" placeholder="Search here...">
+        </div>
+
+        <img src="images/profile.jpg" alt="">
+    </div>
+
+    <div class="dash-content">
+        <div class="overview">
+            <div class="title">
+                <i class="uil uil-tachometer-fast-alt"></i>
+                <span class="text">All Product</span>
+            </div>
+        </div>
+        <div>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <td class="table-light">id</td>
+                        <td class="table-light">Name</td>
+                        <td class="table-light">Description</td>
+                        <td class="table-light">Enable</td>
+                        <td class="table-light">type</td>
+                        <td class="table-light">operation</td>
+                        
+                    </tr>
+                </thead>
+
+                <tbody>
+                @{
+                    foreach (var h in Model.blogs )
+                    {
+                        <tr>
+                            <td>@h.Id</td>
+                            <td>@h.Name</td>
+                            <td>@h.Discription</td>
+                            <td>@h.Enable</td>
+                            @if (h.TypeId == 1)
+                            {
+                                <td>Romantic</td>
+                            }
+                            else
+                            {
+                                <td>Action</td>
+                            }
+                            <td>
+
+
+                                <a class="btn btn-success" role="button" asp-page="CreatBlog" asp-route-id="@h.Id">
+                                    <span class="material-symbols-outlined">
+                                        Update
+                                    </span>
+                                </a>
+                                <form method="post" asp-page-handler="Delete" asp-route-id="@h.Id">
+                                    <button class="btn btn-danger " role="button" type="submit">
+                                        <span class="material-symbols-outlined">
+                                            delete
+                                        </span>
+                                    </button>
+                               
+                               </form>
+                                   
+                               
+                                
+                            </td>
+
+                        </tr>
+
+                    }
+                }
+                    
+                </tbody>
+            </table>
+
+        </div>
+
+
+
+
+    </div>
